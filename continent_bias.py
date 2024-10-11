@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 # Let me load and inspect the contents of the file to understand its structure and data.
 file_path = 'outfile.dat'
@@ -40,3 +41,30 @@ bias_analysis.reset_index()
 
 print(player_continent_distribution)
 print(bias_analysis) 
+
+# Observed voting patterns (actual votes)
+observed = voting_patterns
+
+total_voters_by_c = df['Continent'].value_counts()
+total_votes = total_voters_by_c.sum()
+
+expected_votes = {}
+
+dist = player_continent_distribution.set_index('Continent').to_dict()['Fair Vote Percentage']
+
+for voter_cont, total in total_voters_by_c.items():
+    expected_votes[voter_cont] = {
+            target_continent: (total * fair_percentage)/100 for target_continent, fair_percentage in dist.items()
+            }
+
+expected = pd.DataFrame(expected_votes)
+
+# Ensure the indices are aligned for comparison
+observed.index.name = 'Continent'
+expected.index.name = 'Continent'
+
+# Apply the Chi-squared formula (O - E)^2 / E to each corresponding pair of actual and expected values
+chi_squared_df = ((observed - expected.T) ** 2) / expected.T
+
+# Display the resulting DataFrame with Chi-squared values
+print(chi_squared_df.sum().sum())
