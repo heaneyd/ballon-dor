@@ -39,9 +39,14 @@ for continent in bias_analysis.columns:
 
 bias_analysis.reset_index()
 
+print("Fair Percentages (overall vote percent for each continent")
+print("=========================================================")
 print(player_continent_distribution)
+print()
+print("Bias Analysis, for each country above/below fair percent")
+print("=========================================================")
 print(bias_analysis) 
-
+print()
 # Observed voting patterns (actual votes)
 observed = voting_patterns
 
@@ -66,5 +71,20 @@ expected.index.name = 'Continent'
 # Apply the Chi-squared formula (O - E)^2 / E to each corresponding pair of actual and expected values
 chi_squared_df = ((observed - expected.T) ** 2) / expected.T
 
+print("Expected votes in each category based on fair percentage")
+print("=========================================================")
+print(expected)
+print()
+print("Actual/Observed votes")
+print("=========================================================")
+print(observed)
+print()
+print("(Observed-Expected)^2/Expected")
+print("=========================================================")
+print(chi_squared_df)
+print()
 # Display the resulting DataFrame with Chi-squared values
-print(chi_squared_df.sum().sum())
+
+print()
+print("Chi sqaure test stat:" + str(chi_squared_df.sum().sum()))
+print()
