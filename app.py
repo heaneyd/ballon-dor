@@ -6,7 +6,8 @@ import pandas as pd
 def load_data():
     # Replace with the correct path to your file
     file_path = 'outfile.dat'
-    data = pd.read_csv(file_path, delimiter='|')
+    data = pd.read_csv(file_path, delimiter='|', header=None)
+    data.columns = ['Year', 'Country', 'Continent', 'Ranking Date', 'Rank', 'Award name', 'Voter Name', 'Voter Role', 'Player', 'Player National Team', 'Player Continent', 'Player Club Team', 'Position', 'Points']
     return data
 
 # Load the data
