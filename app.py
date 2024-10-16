@@ -22,14 +22,14 @@ if voter_continents:
     data = data[data['Continent'].isin(voter_continents)]
 
 # Filter by Voter Role (Coach, Captain, Media)
-voter_roles = st.sidebar.multiselect("Voter Role", options=data['Coach'].unique())
+voter_roles = st.sidebar.multiselect("Voter Role", options=data['Voter Role'].unique())
 if voter_roles:
-    data = data[data['Coach'].isin(voter_roles)]
+    data = data[data['Voter Role'].isin(voter_roles)]
 
 # Filter by Player
-players = st.sidebar.multiselect("Players", options=data['Lionel Messi'].unique())
+players = st.sidebar.multiselect("Players", options=data['Player'].unique())
 if players:
-    data = data[data['Lionel Messi'].isin(players)]
+    data = data[data['Player'].isin(players)]
 
 # Main Display: Show Filtered Data
 st.write("### Filtered Data", data)
