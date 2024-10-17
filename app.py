@@ -52,5 +52,5 @@ agg_data['percent'] = (agg_data['Points']/agg_data['total']) * 100
 pts = agg_data.groupby(["Player"])["Points"].sum()
 avg = agg_data.groupby(["Player"])["percent"].mean()
 
-display_df = pd.DataFrame({'Total Points': pts, 'Avg Percent': avg*100}).reset_index()
+display_df = pd.DataFrame({'Total Points': pts, 'Avg Percent': avg}).reset_index()
 st.write(display_df.sort_values(by='Total Points', ascending=False))
