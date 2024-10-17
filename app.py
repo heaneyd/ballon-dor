@@ -8,6 +8,7 @@ def load_data():
     file_path = 'outfile.dat'
     data = pd.read_csv(file_path, delimiter='|', header=None)
     data.columns = ['Year', 'Country', 'Continent', 'Ranking Date', 'Rank', 'Award name', 'Voter Name', 'Voter Role', 'Player', 'Player National Team', 'Player Continent', 'Player Club Team', 'Position', 'Points']
+    data['Top 100'] = df['Rank'].apply(lambda x: 'Yes' if x <= 100 else 'No')
     return data
 
 # Load the data
@@ -27,9 +28,14 @@ if year:
     data = data[data['Year'].isin(year)]
 
 # Filter by Player
-rank = st.sidebar.multiselect("Rank", options=data['Rank'].unique())
+top100 = st.sidebar.multiselect("Top 100", options=data['Top 100'].unique())
 if rank:
-    data = data[data['rank'].isin(rank)]
+    top100 = data[data['Top 100'].isin(rank)]
+
+# Filter by Player
+voter_role = st.sidebar.multiselect("Voter Role", options=data['Voter Role'].unique())
+if rank:
+    data = data[data['Voter Role'].isin(rank)]
 
 # Main Display: Show Filtered Data
 st.write("### Filtered Data", data)
