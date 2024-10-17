@@ -34,7 +34,7 @@ if top100:
 
 # Filter by Player
 voter_role = st.sidebar.multiselect("Voter Role", options=data['Voter Role'].unique())
-if rank:
+if voter_role:
     data = data[data['Voter Role'].isin(rank)]
 
 # Main Display: Show Filtered Data
