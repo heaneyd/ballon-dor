@@ -36,6 +36,6 @@ st.write("### Filtered Data", data)
 
 # Aggregations
 st.write("### Aggregated Votes by Continent of Player")
-agg_data = data.groupby("Player")["Points"].sum().reset_index()
+agg_data = data.groupby("Player")["Points"].sum().sor_values(by='Points', ascending=False)
 st.write(agg_data)
 
