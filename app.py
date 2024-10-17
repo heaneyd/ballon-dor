@@ -44,6 +44,6 @@ st.write("### Filtered Data", data)
 st.write("### Aggregated Votes by Player")
 agg_data = data.groupby("Player")["Points"].sum().sort_values(ascending=False)
 total_pts = agg_data.sum()
-display_df = pd.DataFrame({'Total Points': agg_data, 'Percent': (agg_data/total_points)*100}).reset_index()
+display_df = pd.DataFrame({'Total Points': agg_data, 'Percent': (agg_data/total_pts)*100}).reset_index()
 st.write(display_df.sort_values(by='Total Points', ascending=False))
 
