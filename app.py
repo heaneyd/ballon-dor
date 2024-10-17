@@ -17,25 +17,25 @@ data = load_data()
 st.sidebar.header("Filters")
 
 # Filter by Continent of Voter
-voter_continents = st.sidebar.multiselect("Voter Continent", options=data['Continent'].unique())
-if voter_continents:
-    data = data[data['Continent'].isin(voter_continents)]
+award_name = st.sidebar.multiselect("Award", options=data['Award name'].unique())
+if award_name:
+    data = data[data['Award name'].isin(award_name)]
 
 # Filter by Voter Role (Coach, Captain, Media)
-voter_roles = st.sidebar.multiselect("Voter Role", options=data['Voter Role'].unique())
-if voter_roles:
-    data = data[data['Voter Role'].isin(voter_roles)]
+year = st.sidebar.multiselect("Year", options=data['Year'].unique())
+if year:
+    data = data[data['Year'].isin(year)]
 
 # Filter by Player
-players = st.sidebar.multiselect("Players", options=data['Player'].unique())
-if players:
-    data = data[data['Player'].isin(players)]
+rank = st.sidebar.multiselect("Rank", options=data['Rank'].unique())
+if rank:
+    data = data[data['rank'].isin(rank)]
 
 # Main Display: Show Filtered Data
 st.write("### Filtered Data", data)
 
 # Aggregations
 st.write("### Aggregated Votes by Continent of Player")
-agg_data = data.groupby("Continent")["Points"].sum().reset_index()
+agg_data = data.groupby("Player")["Points"].sum().reset_index()
 st.write(agg_data)
 
