@@ -30,12 +30,12 @@ if year:
 # Filter by Player
 top100 = st.sidebar.multiselect("Top 100", options=data['Top 100'].unique())
 if top100:
-    data = data[data['Top 100'].isin(rank)]
+    data = data[data['Top 100'].isin(top100)]
 
 # Filter by Player
 voter_role = st.sidebar.multiselect("Voter Role", options=data['Voter Role'].unique())
 if voter_role:
-    data = data[data['Voter Role'].isin(rank)]
+    data = data[data['Voter Role'].isin(voter_role)]
 
 # Main Display: Show Filtered Data
 st.write("### Filtered Data", data)
