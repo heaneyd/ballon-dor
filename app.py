@@ -8,7 +8,7 @@ def load_data():
     file_path = 'outfile.dat'
     data = pd.read_csv(file_path, delimiter='|', header=None)
     data.columns = ['Year', 'Country', 'Continent', 'Ranking Date', 'Rank', 'Award name', 'Voter Name', 'Voter Role', 'Player', 'Player National Team', 'Player Continent', 'Player Club Team', 'Position', 'Points']
-    data['Top 100'] = df['Rank'].apply(lambda x: 'Yes' if x <= 100 else 'No')
+    data['Top 100'] = data['Rank'].apply(lambda x: 'Yes' if x <= 100 else 'No')
     return data
 
 # Load the data
