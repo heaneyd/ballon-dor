@@ -43,7 +43,7 @@ st.write("### Filtered Data", data)
 # Aggregations
 # these were recorded on the pdf but not countred towards the total, rmoeve them for counting results
 st.write("### Aggregated Votes by Player")
-data = data[~((data['Voter Role'] == 'Media'])&(data['Year'] == 2012)&(data['Country'].isin(['Burma', 'Bahamas', 'US Virgin Islands', 'Kyrgyzstan'])))] 
+data = data[~((data['Voter Role'] == 'Media')&(data['Year'] == 2012)&(data['Country'].isin(['Burma', 'Bahamas', 'US Virgin Islands', 'Kyrgyzstan'])))] 
 agg_data = data.groupby(["Player","Voter Role"])["Points"].sum().reset_index()
 total_by_role = agg_data.groupby("Voter Role")["Points"].sum()
 agg_data['total'] = agg_data['Voter Role'].map(total_by_role)
