@@ -56,3 +56,20 @@ avg = agg_data.groupby(["Player"])["percent"].mean()
 
 display_df = pd.DataFrame({'Total Points': pts, 'Avg Percent': avg}).reset_index()
 st.write(display_df.sort_values(by='Total Points', ascending=False))
+
+
+# Add a chart using matplotlib
+st.write("### Total Points by Player")
+
+# Sort by Total Points for better visualization
+sorted_df = display_df.sort_values(by='Total Points', ascending=False)
+
+# Create a bar chart
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.barh(sorted_df['Player'], sorted_df['Total Points'], color='skyblue')
+ax.set_xlabel("Total Points")
+ax.set_ylabel("Player")
+ax.set_title("Total Points by Player")
+
+# Display the chart in Streamlit
+st.pyplot(fig)
