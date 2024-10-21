@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the dataset
-@st.cache
+@st.cache_data
 def load_data():
     # Replace with the correct path to your file
     file_path = 'outfile.dat'
