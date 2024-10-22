@@ -33,7 +33,7 @@ total_points_per_player = data.groupby("Player")["Points"].sum().sort_values(asc
 
 # 2. Get the sorted order of players by total points
 sorted_players = total_points_per_player.index.tolist()
-vote_matrix = data.pivot_table(index='Country', columns='Player', values='Points', fill_value=0)
+vote_matrix = data.pivot_table(index='Country', columns='Player', values='Points', fill_value=0, aggfunc='sum')
 vote_matrix = vote_matrix[sorted_players]
 
 #vote_matrix_aggregated = vote_matrix.reshape((len(vote_matrix) // 5, 5)).mean(axis=1)
