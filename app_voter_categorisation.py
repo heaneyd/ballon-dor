@@ -25,15 +25,15 @@ vote_matrix = filtered_data.pivot_table(index='Voter Name', columns='Player', va
 # Perform KMeans clustering
 num_clusters = st.sidebar.slider("Number of Clusters", min_value=2, max_value=10, value=3)
 kmeans = KMeans(n_clusters=num_clusters, random_state=0)
-kmeans_res = kmeans.fit_predict(vote_matrix)
+vote_matrix['Cluster'] = kmeans.fit_predict(vote_matrix)
 
 # Display the clusters
 st.write("### Journalist Clusters")
 #st.write(filtered_data[['Voter Name', 'cluster']])
-st.write(kmeans_res)
+st.write(vote_matrix)
 
 # Show a heatmap for the clustering
 plt.figure(figsize=(10, 8))
-sns.heatmap(kmeans_res, cmap="coolwarm", cbar_kws={'label': 'Points'})
+sns.heatmap(vote_matrix, cmap="coolwarm", cbar_kws={'label': 'Points'})
 plt.title("Journalist Voting Patterns Heatmap")
 st.pyplot(plt)
