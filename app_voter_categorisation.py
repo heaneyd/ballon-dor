@@ -33,7 +33,7 @@ st.write("### Journalist Clusters")
 st.write(vote_matrix)
 
 # Show a heatmap for the clustering
-plt.figure(figsize=(10, 15))
+plt.figure(figsize=(10, 20))
 sns.heatmap(vote_matrix.sort_values(by='Cluster', ascending=True), cmap="coolwarm", cbar_kws={'label': 'Points'})
 plt.title("Journalist Voting Patterns Heatmap")
 st.pyplot(plt)
