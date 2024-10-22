@@ -19,7 +19,14 @@ data = load_data()
 filtered_data = data[(data['Year'] == 2023) & (data['Award name'] == "Ballon D'Or")]
 
 # Create a matrix where rows are journalists (Voter Name) and columns are players
-vote_matrix = filtered_data.pivot_table(index='Voter Name', columns='Player', values='Points', fill_value=0)
+# 1. Calculate the total points per player
+total_points_per_player = filtered_data.groupby("Player")["Points"].sum().sort_values(ascending=False)
+
+# 2. Get the sorted order of players by total points
+sorted_players = total_points_per_player.index.tolist()
+vote_matrix = filtered_data.pivot_table(index='Country', columns='Player', values='Points', fill_value=0)
+vote_matrix = vote_matrix[sorted_players]
+
 #vote_matrix_aggregated = vote_matrix.reshape((len(vote_matrix) // 5, 5)).mean(axis=1)
 
 # Perform KMeans clustering
@@ -28,12 +35,17 @@ kmeans = KMeans(n_clusters=num_clusters, random_state=0)
 vote_matrix['Cluster'] = kmeans.fit_predict(vote_matrix)
 
 # Display the clusters
-st.write("### Journalist Clusters")
+st.write("### Country Clusters")
 #st.write(filtered_data[['Voter Name', 'cluster']])
 st.write(vote_matrix)
 
 # Show a heatmap for the clustering
+# Sort voters by their cluster labels
+sorted_vote_matrix = vote_matrix.sort_values(by='Cluster', ascending=True)
+
 plt.figure(figsize=(10, 24))
-sns.heatmap(vote_matrix.sort_values(by='Cluster', ascending=True), cmap="coolwarm", cbar_kws={'label': 'Points'})
-plt.title("Journalist Voting Patterns Heatmap")
+ax = sns.heatmap(sorted_vote_matrix.drop(columns=['Cluster']), cmap="coolwarm", cbar_kws={'label': 'Points'})
+
+
+plt.title("Country Voting Patterns Heatmap")
 st.pyplot(plt)
