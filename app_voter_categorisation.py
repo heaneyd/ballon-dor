@@ -15,12 +15,12 @@ def load_data():
 # Load the data
 data = load_data()
 
-award_name = st.sidebar.multiselect("Award", options=data['Award name'].unique())
+award_name = st.sidebar.multiselect("Award", options=data['Award name'].unique(), default=["Ballon D'Or"])
 if award_name:
     data = data[data['Award name'].isin(award_name)]
 
 # Filter by Voter Role (Coach, Captain, Media)
-year = st.sidebar.multiselect("Year", options=data['Year'].unique())
+year = st.sidebar.multiselect("Year", options=data['Year'].unique(), default=[2023])
 if year:
     data = data[data['Year'].isin(year)]
 
