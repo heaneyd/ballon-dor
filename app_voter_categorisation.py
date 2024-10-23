@@ -55,6 +55,6 @@ for n in range(num_clusters):
   sorted_vote_matrix = vote_matrix[(vote_matrix['Cluster'] == n)]
   plt.figure(figsize=(len(sorted_vote_matrix.keys())/4, len(sorted_vote_matrix)/4))
   ax = sns.heatmap(sorted_vote_matrix.drop(columns=['Cluster']), cmap="coolwarm", cbar_kws={'label': 'Points'})
-  plt.title("## Cluster: " + str(n))
+  plt.title("Cluster: " + str(n))
   st.pyplot(plt)
   plt.clf()
