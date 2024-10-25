@@ -64,6 +64,7 @@ nx.draw_networkx_labels(G, pos, labels={node: node for node in central_nodes}, f
 
 plt.title("Tidy Network Graph with Central Nodes Labeled")
 plt.show()
+st.pyplot(plt)
 
 # (Add nodes and edges for G based on your data)
 degree_centrality = nx.degree_centrality(G)
