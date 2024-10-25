@@ -34,15 +34,15 @@ for _, row in filtered_data.iterrows():
 
 # Draw the network
 st.write("### Ballon D'Or Voting Network - 2023")
-#plt.figure(figsize=(12, 12))
-#pos = nx.spring_layout(G, seed=42)  # Use spring layout for better spacing
-#nx.draw_networkx_nodes(G, pos, node_color='skyblue', node_size=700, alpha=0.8)
-#nx.draw_networkx_edges(G, pos, width=1, alpha=0.5)
-#nx.draw_networkx_labels(G, pos, font_size=10)
+plt.figure(figsize=(12, 12))
+pos = nx.spring_layout(G, seed=42)  # Use spring layout for better spacing
+nx.draw_networkx_nodes(G, pos, node_color='skyblue', node_size=700, alpha=0.8)
+nx.draw_networkx_edges(G, pos, width=1, alpha=0.5)
+nx.draw_networkx_labels(G, pos, font_size=10)
 
 # Edge weights for better visualization
-#edge_labels = nx.get_edge_attributes(G, 'weight')
-#nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+edge_labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
 st.pyplot(plt)
 # Example network (G) after calculating centrality measures
