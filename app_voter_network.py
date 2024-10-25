@@ -46,9 +46,32 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
 st.pyplot(plt)
 
-# Calculate centrality
-st.write("### Network Analysis")
+
+# (Add nodes and edges for G based on your data)
 degree_centrality = nx.degree_centrality(G)
 betweenness_centrality = nx.betweenness_centrality(G)
+
+# Create a DataFrame with centrality measures
+centrality_df = pd.DataFrame({
+    "Node": list(degree_centrality.keys()),
+    "Degree Centrality": list(degree_centrality.values()),
+    "Betweenness Centrality": list(betweenness_centrality.values())
+})
+
+# Sort by Degree Centrality in descending order
+centrality_df = centrality_df.sort_values(by="Degree Centrality", ascending=False)
+
+# Apply conditional formatting in Streamlit
+st.write("### Centrality Measures")
+st.dataframe(centrality_df.style
+    .background_gradient(cmap="YlGn", subset=["Degree Centrality"])
+    .background_gradient(cmap="Blues", subset=["Betweenness Centrality"])
+    .format({"Degree Centrality": "{:.2f}", "Betweenness Centrality": "{:.2f}"}))
+
+
+# Calculate centrality
+st.write("### Network Analysis")
+#degree_centrality = nx.degree_centrality(G)
+#betweenness_centrality = nx.betweenness_centrality(G)
 st.write("Degree Centrality:", degree_centrality)
 st.write("Betweenness Centrality:", betweenness_centrality)
