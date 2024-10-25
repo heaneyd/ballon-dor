@@ -44,7 +44,7 @@ st.write("### Ballon D'Or Voting Network - 2023")
 #edge_labels = nx.get_edge_attributes(G, 'weight')
 #nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
-#st.pyplot(plt)
+st.pyplot(plt)
 # Example network (G) after calculating centrality measures
 # Use a spring layout for clearer visualization
 pos = nx.spring_layout(G, k=0.15, iterations=20)  # Adjust k for node spacing
